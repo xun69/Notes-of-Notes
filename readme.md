@@ -20,3 +20,9 @@
 ## 纯粹化写作主义
 - [为什么不应该用Obsidian和Notion记笔记](./为什么不应该用Obsidian和Notion记笔记.md) 
 
+## 基于Github写作
+
+- [本地Git环境搭建](./基于Github写作\本地Git环境搭建.md) 
+- [Github网络环境搭建](./基于Github写作\Github网络环境搭建.md) 
+- [笔记软件的选用](./基于Github写作\笔记软件的选用.md) 
+
