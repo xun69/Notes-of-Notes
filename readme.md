@@ -18,5 +18,5 @@
 -  [vscode的Typora插件](./Typora替代\vscode的Typora插件.md) 
 
 ## 纯粹化写作注意
-- [为什么不应该用Obsidian和Notion记笔记.md](./为什么不应该用Obsidian和Notion记笔记) 
+- [为什么不应该用Obsidian和Notion记笔记](./为什么不应该用Obsidian和Notion记笔记.md) 
 
