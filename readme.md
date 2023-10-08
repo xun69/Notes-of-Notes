@@ -5,10 +5,13 @@
 ## MarkDown的一些扩展用法
 
 - [Latex数学公式简要笔记](./Latex数学公式简要笔记.md) 
-
 - [用marp制作PPT](./用marp制作PPT.md) 
-
 - [PlantUML](./PlantUML.md) 
+
+## 翻译与下载MD
+
+- [浏览器插件MarkDownLoad](./浏览器插件MarkDownLoad.md) 
+- [沉浸式翻译](./沉浸式翻译.md) 
 
 ## Typora替代
 
