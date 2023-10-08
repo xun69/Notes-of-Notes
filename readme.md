@@ -13,6 +13,11 @@
 - [浏览器插件MarkDownLoad](./浏览器插件MarkDownLoad.md) 
 - [沉浸式翻译](./沉浸式翻译.md) 
 
+## Typora技巧
+
+- [图片保存的设定](./Typora技巧/图片保存的设定.md) 
+- [建立文档目录的技巧](./Typora技巧/建立文档目录的技巧.md) 
+
 ## Typora替代
 
 -  [MarkText](./Typora替代/MarkText.md) 
