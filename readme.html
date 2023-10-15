@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>readme</title>
+	<link rel="stylesheet" href="index.css">
+	<!-- 引入语法高亮 -->
+	<link href="highlight/dark.min.css" rel="stylesheet">
+	<script src="highlight/highlight.min.js"></script>
+	<!-- 引入JQuery -->
+	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+	<script>
+		$(function(){
+			// 根据正文内容创建目录
+			let content = "";
+			$(".main h1,.main h2,.main h3").each(function(index,ele){
+				$(this).before(`<a name ="ctn_${index}"></li>`)
+				switch(ele.tagName){
+					case "H1":
+						content += `<li class="h1"><a href="#ctn_${index}">${ele.textContent}</a></li>`;
+						break;
+					case "H2":
+						content += `<li class="h2"><a href="#ctn_${index}">${ele.textContent}</a></li>`;
+						break;
+					case "H3":
+						content += `<li class="h3"><a href="#ctn_${index}">${ele.textContent.split("(")[0]}</a></li>`;
+						break;
+				}
+			})
+			$(".right ul").append(content);
+			// 侧边栏子文件夹点击事件
+			$(".doc_tree li>span").on("click",function(){
+				$(this).next("ul").toggle();
+			})
+		})
+	</script>
+</head>
+<body>
+<!-- 左侧 -->
+	<aside class="left">
+		<div class="logo_box">
+			<a href="#" class="logo_text">Notes of notes</a>
+			<span>围绕MarkDown的笔记与写作</span>
+		</div>
+		<!-- 文档列表 -->
+		<div class="doc_tree">
+<ul>
+	<li><a href="Latex数学公式简要笔记.html">Latex数学公式简要笔记</a></li>
+	<li><a href="PlantUML.html">PlantUML</a></li>
+	<li><a href="readme.html">readme</a></li>
+	<li><a href="为什么不应该用Obsidian和Notion记笔记.html">为什么不应该用Obsidian和Notion记笔记</a></li>
+	<li><a href="沉浸式翻译.html">沉浸式翻译</a></li>
+	<li><a href="浏览器插件MarkDownLoad.html">浏览器插件MarkDownLoad</a></li>
+	<li><a href="用marp制作PPT.html">用marp制作PPT</a></li>
+<li><span>Typora技巧</span>
+	<ul>
+		<li><a href="Typora技巧/图片保存的设定.html">图片保存的设定</a></li>
+		<li><a href="Typora技巧/建立文档目录的技巧.html">建立文档目录的技巧</a></li>
+	</ul>
+
+</li>
+<li><span>Typora替代</span>
+	<ul>
+		<li><a href="Typora替代/MarkText.html">MarkText</a></li>
+		<li><a href="Typora替代/Typedown.html">Typedown</a></li>
+		<li><a href="Typora替代/vscode-yarkdown.html">vscode-yarkdown</a></li>
+		<li><a href="Typora替代/vscode的Typora插件.html">vscode的Typora插件</a></li>
+	</ul>
+
+</li>
+<li><span>基于Github写作</span>
+	<ul>
+		<li><a href="基于Github写作/Github网络环境搭建.html">Github网络环境搭建</a></li>
+		<li><a href="基于Github写作/创建本地笔记项目和初始化仓库.html">创建本地笔记项目和初始化仓库</a></li>
+		<li><a href="基于Github写作/本地Git环境搭建.html">本地Git环境搭建</a></li>
+		<li><a href="基于Github写作/笔记软件的选用.html">笔记软件的选用</a></li>
+	</ul>
+
+</li>
+</ul>
+
+		</div>
+
+	</aside>
+	<!-- 整体布局 -->
+	<div class="layout center">
+		<!-- 正文区 -->
+		<div class="main">
+<h1>笔记的笔记</h1><p>
+
+这是一个围绕MarkDown展开的笔记方式和笔记系统的思考和记录。
+
+<h2>MarkDown的一些扩展用法</h2><p>
+
+<li><a href='./Latex数学公式简要笔记.md' target="_blank">Latex数学公式简要笔记</a></li><p>
+ 
+<li><a href='./用marp制作PPT.md' target="_blank">用marp制作PPT</a></li><p>
+ 
+<li><a href='./PlantUML.md' target="_blank">PlantUML</a></li><p>
+ 
+
+<h2>翻译与下载MD</h2><p>
+
+<li><a href='./浏览器插件MarkDownLoad.md' target="_blank">浏览器插件MarkDownLoad</a></li><p>
+ 
+<li><a href='./沉浸式翻译.md' target="_blank">沉浸式翻译</a></li><p>
+ 
+
+<h2>Typora技巧</h2><p>
+
+<li><a href='./Typora技巧/图片保存的设定.md' target="_blank">图片保存的设定</a></li><p>
+ 
+<li><a href='./Typora技巧/建立文档目录的技巧.md' target="_blank">建立文档目录的技巧</a></li><p>
+ 
+
+<h2>Typora替代</h2><p>
+
+<li> <a href='./Typora替代/MarkText.md' target="_blank">MarkText</a></li><p>
+ 
+<li> <a href='./Typora替代/Typedown.md' target="_blank">Typedown</a></li><p>
+ 
+<li> <a href='./Typora替代/vscode-yarkdown.md' target="_blank">vscode-yarkdown</a></li><p>
+ 
+<li> <a href='./Typora替代/vscode的Typora插件.md' target="_blank">vscode的Typora插件</a></li><p>
+ 
+
+<h2>纯粹化写作主义</h2><p>
+<li><a href='./为什么不应该用Obsidian和Notion记笔记.md' target="_blank">为什么不应该用Obsidian和Notion记笔记</a></li><p>
+ 
+
+<h2>基于Github写作</h2><p>
+
+<li><a href='./基于Github写作/本地Git环境搭建.md' target="_blank">本地Git环境搭建</a></li><p>
+ 
+<li><a href='./基于Github写作/Github网络环境搭建.md' target="_blank">Github网络环境搭建</a></li><p>
+ 
+<li><a href='./基于Github写作/笔记软件的选用.md' target="_blank">笔记软件的选用</a></li><p>
+ 
+
+
+		</div>
+		
+	</div>
+	<!-- 右侧 - 文章目录区 -->
+	<aside class="right">
+		<h3>目录</h3>
+		<ul>
+			
+		</ul>
+	</aside>
+	<!-- 实施语法高亮 -->
+	<script>hljs.highlightAll();</script>
+</body>
+</html>

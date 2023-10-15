@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Latex数学公式简要笔记</title>
+	<link rel="stylesheet" href="index.css">
+	<!-- 引入语法高亮 -->
+	<link href="highlight/dark.min.css" rel="stylesheet">
+	<script src="highlight/highlight.min.js"></script>
+	<!-- 引入JQuery -->
+	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+	<script>
+		$(function(){
+			// 根据正文内容创建目录
+			let content = "";
+			$(".main h1,.main h2,.main h3").each(function(index,ele){
+				$(this).before(`<a name ="ctn_${index}"></li>`)
+				switch(ele.tagName){
+					case "H1":
+						content += `<li class="h1"><a href="#ctn_${index}">${ele.textContent}</a></li>`;
+						break;
+					case "H2":
+						content += `<li class="h2"><a href="#ctn_${index}">${ele.textContent}</a></li>`;
+						break;
+					case "H3":
+						content += `<li class="h3"><a href="#ctn_${index}">${ele.textContent.split("(")[0]}</a></li>`;
+						break;
+				}
+			})
+			$(".right ul").append(content);
+			// 侧边栏子文件夹点击事件
+			$(".doc_tree li>span").on("click",function(){
+				$(this).next("ul").toggle();
+			})
+		})
+	</script>
+</head>
+<body>
+<!-- 左侧 -->
+	<aside class="left">
+		<div class="logo_box">
+			<a href="#" class="logo_text">Notes of notes</a>
+			<span>围绕MarkDown的笔记与写作</span>
+		</div>
+		<!-- 文档列表 -->
+		<div class="doc_tree">
+<ul>
+	<li><a href="Latex数学公式简要笔记.html">Latex数学公式简要笔记</a></li>
+	<li><a href="PlantUML.html">PlantUML</a></li>
+	<li><a href="readme.html">readme</a></li>
+	<li><a href="为什么不应该用Obsidian和Notion记笔记.html">为什么不应该用Obsidian和Notion记笔记</a></li>
+	<li><a href="沉浸式翻译.html">沉浸式翻译</a></li>
+	<li><a href="浏览器插件MarkDownLoad.html">浏览器插件MarkDownLoad</a></li>
+	<li><a href="用marp制作PPT.html">用marp制作PPT</a></li>
+<li><span>Typora技巧</span>
+	<ul>
+		<li><a href="Typora技巧/图片保存的设定.html">图片保存的设定</a></li>
+		<li><a href="Typora技巧/建立文档目录的技巧.html">建立文档目录的技巧</a></li>
+	</ul>
+
+</li>
+<li><span>Typora替代</span>
+	<ul>
+		<li><a href="Typora替代/MarkText.html">MarkText</a></li>
+		<li><a href="Typora替代/Typedown.html">Typedown</a></li>
+		<li><a href="Typora替代/vscode-yarkdown.html">vscode-yarkdown</a></li>
+		<li><a href="Typora替代/vscode的Typora插件.html">vscode的Typora插件</a></li>
+	</ul>
+
+</li>
+<li><span>基于Github写作</span>
+	<ul>
+		<li><a href="基于Github写作/Github网络环境搭建.html">Github网络环境搭建</a></li>
+		<li><a href="基于Github写作/创建本地笔记项目和初始化仓库.html">创建本地笔记项目和初始化仓库</a></li>
+		<li><a href="基于Github写作/本地Git环境搭建.html">本地Git环境搭建</a></li>
+		<li><a href="基于Github写作/笔记软件的选用.html">笔记软件的选用</a></li>
+	</ul>
+
+</li>
+</ul>
+
+		</div>
+
+	</aside>
+	<!-- 整体布局 -->
+	<div class="layout center">
+		<!-- 正文区 -->
+		<div class="main">
+<h1>Latex数学公式简要笔记</h1><p>
+
+<h2>概述</h2><p>
+
+在研究和表达一些游戏中使用到的基础数学时，我们便会遇到数学公式书写和显示的问题。虽然用绘图工具手写也没啥毛病，但是终究有点费力，且不优雅。
+
+LaTeX是一个基于宏标记语言的排版系统，可以简单理解为MarkDown的复杂版本。LaTeX解决了复杂数学公式的排版问题，而目前主流的MarkDown编辑器，都支持了LaTeX数学公式的书写和显示支持。
+
+LaTeX使用<span class="inline_code">\指令</span>形式控制排版的元素，你可以简单的将LaTeX指令当做是函数，而LaTeX公式的表达式是在书写某种形式的脚本。
+
+用LaTeX格式书写数学公式，一个是标准（至少以学术要求来说），一个是美观（自动、标准化排版）。
+
+而且基本上日常使用，尤其是游戏方面，记住三五个到十来个写法就完全够用了。
+
+本篇就是基于日常游戏相关的简单四则运算，平方，开方，三角函数，向量、矩阵所能用到的数学公式所做的浓缩。
+
+<h3>参考视频</h3><p>
+
+<a href='https://www.bilibili.com/video/BV1NT411C7wS/?spm_id_from=333.337.search-card.all.click&vd_source=2f49ad1693bc7945c7bf165c74c86263' target="_blank">【Latex公式教程】 教你用Typora解决99%的数学公式输入难题_哔哩哔哩_bilibili</a>
+
+
+<h3>说明</h3><p>
+
+<li>在最新版（1.7.5）Typora中默认不支持<span class="inline_code">$公式$</span>形式的行内公式（或者是因为我是试用版？）需要在偏好设置中打开才能使用。</li><p>
+
+  <img src='C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20231007021048647.png' alt="image-20231007021048647" />
+
+
+<li>在语雀中需要使用<span class="inline_code">\</span>指令调出“公式”，来插入LaTeX公式。而且不需要输入<span class="inline_code">$</span>或<span class="inline_code">$$</span>。</li><p>
+
+<li>在Typora、VScode以及语雀中国，LaTeX数学公式的语法是一致的。</li><p>
+
+<li>在GitHub中预览MarkDown文件时，并不会渲染LaTeX公式。</li><p>
+
+<h2>上下标</h2><p>
+
+上下标是最常见也最常用的。
+
+<li><span class="inline_code">_下标</span>或<span class="inline_code">_{下标}</span></li><p>
+<li><span class="inline_code">^上标</span>或<span class="inline_code">^{上标}</span></li><p>
+<li>上标或下标的顺序可以颠倒</li><p>
+
+<div class="code_block"><pre><code>$$
+x_2^5+y^5_4
+$$
+</code>
+</pre>
+</div>
+
+
+$$
+x_2^5+y^5_4
+$$
+
+复杂的上下标需要使用<span class="inline_code">{}</span>括住上下标的内容。
+
+<div class="code_block"><pre><code>$$
+x_2^{5+i}+y^5_{4-k}
+$$
+</code>
+</pre>
+</div>
+
+
+
+$$
+x_2^{5+i}+y^5_{4-k}
+$$
+
+还可以使用<span class="inline_code">\sideset</span>进行四个位置的上下标设定。
+
+<div class="code_block"><pre><code>$$
+\sideset{_1^2}{_3^4}A
+$$
+</code>
+</pre>
+</div>
+
+
+
+$$
+\sideset{_1^2}{_3^4}A
+$$
+
+
+<h2>三角函数</h2><p>
+基本上就是原样写就行，度数可以使用<span class="inline_code">°</span>，但是并不标准，标准写法是使用<span class="inline_code">\degree</span>。
+<div class="code_block"><pre><code>$$
+sin(30\degree)+cos(45\degree)
+$$
+</code>
+</pre>
+</div>
+
+
+$$
+sin(30\degree) + cos(45\degree)
+$$
+
+<h2>乘法</h2><p>
+
+乘法符号包括最常见的×号，以及点乘符号。
+
+<h3>乘法</h3><p>
+
+×号用<span class="inline_code">\times</span>就可以。
+
+<div class="code_block"><pre><code>$$
+a \times b
+$$
+</code>
+</pre>
+</div>
+
+$$
+a \times b
+$$
+
+<h3>点乘</h3><p>
+
+点乘可以使用<span class="inline_code">\cdot</span>。
+
+<div class="code_block"><pre><code>$$
+A \cdot B
+$$
+</code>
+</pre>
+</div>
+
+$$
+A \cdot B
+$$
+
+<h2>除法</h2><p>
+
+<h3>标准除法符号</h3><p>
+
+标准的除法符号可以使用<span class="inline_code">num1 \div num2</span>形式。
+
+<div class="code_block"><pre><code>$$
+a \div b
+$$
+</code>
+</pre>
+</div>
+
+
+$$
+a \div b
+$$
+
+或者也可以采用<span class="inline_code">除数/被除数</span>形式。
+$$
+a/b
+$$
+
+<h3>分数形式</h3><p>
+
+分数，单词<span class="inline_code">fraction</span>，指令形式为<span class="inline_code">\frac{分子}{分母}</span>。
+
+<div class="code_block"><pre><code>$$
+\frac{1}{2} +\frac{a+b}{c^2}
+$$
+</code>
+</pre>
+</div>
+
+$$
+\frac{1}{2} +\frac{a+b}{c^2}
+$$
+
+<h2>开方</h2><p>
+
+开方也比较常用,平方根英文<span class="inline_code">square root</span>,LateX指令<span class="inline_code">\sqrt[开方次数]{底}</span>，默认可以不写开方次数，只写底，则默认为开平方根。
+
+<div class="code_block"><pre><code>$$
+\sqrt{a^2+b^2}
+$$
+</code>
+</pre>
+</div>
+
+$$
+\sqrt{a^2+b^2}
+$$
+或者：
+<div class="code_block"><pre><code>$$
+\sqrt[3]{2}
+$$
+</code>
+</pre>
+</div>
+
+$$
+\sqrt[3]{2}
+$$
+
+<h2>省略</h2><p>
+<span class="inline_code">\dots</span>是最简单的，用于表示省略。
+
+<div class="code_block"><pre><code>$$
+a+b+c \dots + n
+$$
+</code>
+</pre>
+</div>
+
+
+
+$$
+a+b+c \dots + n
+$$
+<h2>向量</h2><p>
+最简形式：<span class="inline_code">\vec{向量名}</span>。
+<div class="code_block"><pre><code>$$
+\vec{a} - \vec{b} = \vec{a} + (-\vec{b})
+$$
+</code>
+</pre>
+</div>
+
+
+
+$$
+\vec{a} <li>\vec{b} = \vec{a} + (-\vec{b})</li><p>
+$$
+
+<h2>累加</h2><p>
+
+累加或者叫求和，指令<span class="inline_code">\sum</span>,可以跟上上下标，通常的写法就是<span class="inline_code">\sum_{i=起始}^{结束}i的表达式</span>，表示i=起始到结束，对i的表达式进行累加求和。
+
+<div class="code_block"><pre><code>$$
+\sum_{i=1}^{10}i^2 = 1^2 +2^2+\dots+ 10^2
+$$
+</code>
+</pre>
+</div>
+
+
+
+$$
+\sum_{i=1}^{10}i^2 = 1^2 +2^2+\dots+ 10^2
+$$
+
+上面的公式就是对表达式i的平方进行i=1到10的累加运算。
+
+<h2>累乘</h2><p>
+
+累乘和累加类似。只不过符号发生了变化。
+
+<div class="code_block"><pre><code>$$
+\prod_{i=1}^{10}i = 1 \times 2 \times \dots \times 10
+$$
+</code>
+</pre>
+</div>
+
+
+$$
+\prod_{i=1}^{10}i = 1 \times 2 \times \dots \times 10
+$$
+
+<h2>希腊字母</h2><p>
+
+记住最常用的αβγπ就够用了，实在需要的时候百度一下。
+
+<div class="code_block"><pre><code>$$
+\alpha + \beta + \gamma + \pi
+$$
+</code>
+</pre>
+</div>
+
+$$
+\alpha + \beta + \gamma + \pi
+$$
+<div class="code_block"><pre><code>$$
+\Alpha + \Beta + \Gamma + \Pi 
+$$
+</code>
+</pre>
+</div>
+
+$$
+\Alpha + \Beta + \Gamma + \Pi 
+$$
+
+<h2>特殊符号</h2><p>
+
+
+
+<div class="code_block"><pre><code>$$
+\ge \le \ll \neq \geqslant \leqslant \approx
+$$
+</code>
+</pre>
+</div>
+
+$$
+\ge \le \ll \neq \geqslant \leqslant \approx
+$$
+
+<h2>颜色</h2><p>
+<div class="code_block"><pre><code>$$
+\color{red}{A}
+$$
+</code>
+</pre>
+</div>
+
+
+
+$$
+\color{red}{A}
+$$
+
+<h2>矩阵</h2><p>
+<div class="code_block"><pre><code>$$
+\begin{matrix}
+1 &amp; 0 &amp; 0\\
+0 &amp; 1 &amp; 0\\
+0 &amp; 0 &amp; 1\\
+\end{matrix}
+$$
+</code>
+</pre>
+</div>
+
+
+
+
+$$
+\begin{matrix}
+1 & 0 & 0\\
+0 & 1 & 0\\
+0 & 0 & 1\\
+\end{matrix}
+$$
+
+
+<div class="code_block"><pre><code>$$
+\begin{bmatrix}
+1 &amp; 0 &amp; 0\\
+0 &amp; 1 &amp; 0\\
+0 &amp; 0 &amp; 1\\
+\end{bmatrix}
+$$
+</code>
+</pre>
+</div>
+
+
+$$
+\begin{bmatrix}
+1 & 0 & 0\\
+0 & 1 & 0\\
+0 & 0 & 1\\
+\end{bmatrix}
+$$
+
+<div class="code_block"><pre><code>$$
+\begin{vmatrix}
+1 &amp; 0 &amp; 0\\
+0 &amp; 1 &amp; 0\\
+0 &amp; 0 &amp; 1\\
+\end{vmatrix}
+$$
+</code>
+</pre>
+</div>
+
+
+
+$$
+\begin{vmatrix}
+1 & 0 & 0\\
+0 & 1 & 0\\
+0 & 0 & 1\\
+\end{vmatrix}
+$$
+		</div>
+		
+	</div>
+	<!-- 右侧 - 文章目录区 -->
+	<aside class="right">
+		<h3>目录</h3>
+		<ul>
+			
+		</ul>
+	</aside>
+	<!-- 实施语法高亮 -->
+	<script>hljs.highlightAll();</script>
+</body>
+</html>
